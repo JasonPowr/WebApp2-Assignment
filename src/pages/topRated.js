@@ -17,7 +17,7 @@ const TopRatedMoviePage = (props) => {
     };
   
     useEffect(() => {
-      getTopRated.then(movies => {
+      getTopRated().then(movies => {
         setMovies(movies);
       });
       // eslint-disable-next-line react-hooks/exhaustive-deps
