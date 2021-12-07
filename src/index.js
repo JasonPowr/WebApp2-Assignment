@@ -17,6 +17,7 @@ import AddMostPopularPage from './pages/popularPage';
 import { Auth0Provider } from "@auth0/auth0-react";
 import LoginButton from "./components/LoginButton/LoginButton";
 import LogoutButton from "./components/LogoutButton/LogoutButton";
+import AddLoginPage from "./pages/LoginPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,10 +41,7 @@ const App = () => {
         <MoviesContextProvider>
             {" "}
             <Switch>
-            <>
-            <LoginButton />
-            <LogoutButton />
-            </>
+            <Route exact path="/" component={AddLoginPage} />
             <Route exact path="/movies/popular" component={AddMostPopularPage} />
             <Route exact path="/movies/topRated" component={AddTopRatedPage} />
             <Route exact path="/movies/nowplaying" component={AddNowPlayingMoviePage} />
