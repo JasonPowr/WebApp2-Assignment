@@ -40,12 +40,14 @@ export default function FilterMoviesCard(props) {
   if (isError) {
     return <h1>{error.message}</h1>;
   }
+  
   const genres = data.genres;
   genres.unshift({ id: "0", name: "All" });
 
   const handleChange = (e, type, value) => {
     e.preventDefault();
     props.onUserInput(type, value); // NEW
+    data.genres.splice(0,1)
   };
 
   const handleTextChange = (e, props) => {
@@ -73,7 +75,7 @@ export default function FilterMoviesCard(props) {
       onChange={handleTextChange}
     />
         <FormControl className={classes.formControl}>
-          <InputLabel id="genre-label">Genre</InputLabel>
+          <InputLabel id="genre-label">Genres</InputLabel>
           <Select
       labelId="genre-label"
       id="genre-select"
@@ -82,7 +84,8 @@ export default function FilterMoviesCard(props) {
     >
             {genres.map((genre) => {
               return (
-                <MenuItem key={genre.id} value={genre.id}>
+                <MenuItem 
+                key={genre.id} value={genre.id}>
                   {genre.name}
                 </MenuItem>
               );

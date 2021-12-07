@@ -12,6 +12,7 @@ import Menu from "@material-ui/core/Menu";
 import { withRouter } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { Refresh, ReplayOutlined } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   title: {

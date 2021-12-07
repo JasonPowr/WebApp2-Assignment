@@ -13,7 +13,10 @@ import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage';
 import AddNowPlayingMoviePage from './pages/nowPlayingPage';
 import AddTopRatedPage from './pages/topRated';
-import AddMostPopularPage from './pages/popularPage'
+import AddMostPopularPage from './pages/popularPage';
+import { Auth0Provider } from "@auth0/auth0-react";
+import LoginButton from "./components/LoginButton/LoginButton";
+import LogoutButton from "./components/LogoutButton/LogoutButton";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,6 +28,10 @@ const queryClient = new QueryClient({
   },
 });
 
+const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+
+
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
@@ -33,16 +40,20 @@ const App = () => {
         <MoviesContextProvider>
             {" "}
             <Switch>
+            <>
+            <LoginButton />
+            <LogoutButton />
+            </>
             <Route exact path="/movies/popular" component={AddMostPopularPage} />
             <Route exact path="/movies/topRated" component={AddTopRatedPage} />
             <Route exact path="/movies/nowplaying" component={AddNowPlayingMoviePage} />
             <Route exact path="/reviews/form" component={AddMovieReviewPage} />
-      <Route path="/reviews/:id" component={MovieReviewPage} />
-      <Route exact path="/movies/upcoming" component={UpcomingMoviesPage} />
-        <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
-        <Route path="/movies/:id" component={MoviePage} />
-        <Route exact path="/" component={HomePage} />
-        <Redirect from="*" to="/" />
+            <Route path="/reviews/:id" component={MovieReviewPage} />
+            <Route exact path="/movies/upcoming" component={UpcomingMoviesPage} />
+            <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
+            <Route path="/movies/:id" component={MoviePage} />
+            <Route exact path="/" component={HomePage} />
+            <Redirect from="*" to="/" />
         </Switch>
         </MoviesContextProvider>
       </BrowserRouter>
@@ -51,4 +62,10 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+      <Auth0Provider domain={domain}
+                      clientId={clientId}
+                      redirectUri = {window.location.origin}>
+      <App />
+      </Auth0Provider>, 
+      document.getElementById("root"));
