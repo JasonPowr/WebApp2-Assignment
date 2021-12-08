@@ -12,7 +12,7 @@ import Menu from "@material-ui/core/Menu";
 import { withRouter } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { Refresh, ReplayOutlined } from "@material-ui/icons";
+import LogoutButton from "../Buttons/LogoutButton";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -36,6 +36,7 @@ const SiteHeader = ( { history }) => {
     { label: "Now Playing", path: "/movies/nowplaying" }, //extra
     { label: "Popular", path: "/movies/popular" }, //extra
     { label: "Top Rated", path: "/movies/topRated" }, //extra
+    { label: <LogoutButton />, path: "/login"}
   ];
 
   const handleMenuSelect = (pageURL) => {
