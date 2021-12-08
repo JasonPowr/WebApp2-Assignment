@@ -14,10 +14,10 @@ import AddMovieReviewPage from './pages/addMovieReviewPage';
 import AddNowPlayingMoviePage from './pages/nowPlayingPage';
 import AddTopRatedPage from './pages/topRated';
 import AddMostPopularPage from './pages/popularPage';
-import { Auth0Provider } from "@auth0/auth0-react";
-import LoginButton from "./components/LoginButton/LoginButton";
-import LogoutButton from "./components/LogoutButton/LogoutButton";
+import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
 import AddLoginPage from "./pages/LoginPage";
+import PrivateRoute from "./protectedRoute";
+
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,7 +33,9 @@ const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
 
+
 const App = () => {
+
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
@@ -41,16 +43,16 @@ const App = () => {
         <MoviesContextProvider>
             {" "}
             <Switch>
-            <Route exact path="/" component={AddLoginPage} />
-            <Route exact path="/movies/popular" component={AddMostPopularPage} />
-            <Route exact path="/movies/topRated" component={AddTopRatedPage} />
-            <Route exact path="/movies/nowplaying" component={AddNowPlayingMoviePage} />
-            <Route exact path="/reviews/form" component={AddMovieReviewPage} />
-            <Route path="/reviews/:id" component={MovieReviewPage} />
-            <Route exact path="/movies/upcoming" component={UpcomingMoviesPage} />
-            <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
-            <Route path="/movies/:id" component={MoviePage} />
-            <Route exact path="/" component={HomePage} />
+            <Route exact path="/login" component={AddLoginPage} />         
+            <PrivateRoute path="/movies/popular" component={AddMostPopularPage} />
+            <PrivateRoute path="/movies/topRated" component={AddTopRatedPage} />
+            <PrivateRoute path="/movies/nowplaying" component={AddNowPlayingMoviePage} />
+            <PrivateRoute path="/reviews/form" component={AddMovieReviewPage} />
+            <PrivateRoute path="/reviews/:id" component={MovieReviewPage} />
+            <PrivateRoute path="/movies/upcoming" component={UpcomingMoviesPage} />
+            <PrivateRoute path="/movies/favorites" component={FavoriteMoviesPage} />
+            <PrivateRoute path="/movies/:id" component={MoviePage} />
+            <PrivateRoute exact path="/" component={HomePage} />
             <Redirect from="*" to="/" />
         </Switch>
         </MoviesContextProvider>
