@@ -11,9 +11,9 @@ import SearchIcon from "@material-ui/icons/Search";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
-import { getGenres } from "../../api/tmdb-api";
+import { getGenres} from "../../api/tmdb-api";
 import { useQuery } from "react-query";
-import Spinner from '../spinner'
+import Spinner from '../spinner';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,7 +42,7 @@ export default function FilterMoviesCard(props) {
   }
   
   const genres = data.genres;
-  genres.unshift({ id: "0", name: "All" });
+  genres.unshift({ id: "0", name: "  All" });
 
   const handleChange = (e, type, value) => {
     e.preventDefault();
@@ -57,6 +57,11 @@ export default function FilterMoviesCard(props) {
   const handleGenreChange = (e) => {
     handleChange(e, "genre", e.target.value);
   };
+
+  const  handleSort = (e) => {
+    handleChange(e, "Sort", e.target.value);
+  };
+
 
   return (
     <Card className={classes.root} variant="outlined">
@@ -74,6 +79,7 @@ export default function FilterMoviesCard(props) {
       variant="filled"
       onChange={handleTextChange}
     />
+
         <FormControl className={classes.formControl}>
           <InputLabel id="genre-label">Genres</InputLabel>
           <Select
@@ -92,6 +98,7 @@ export default function FilterMoviesCard(props) {
             })}
           </Select>
         </FormControl>
+
       </CardContent>
       <CardMedia
         className={classes.media}

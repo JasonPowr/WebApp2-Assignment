@@ -9,7 +9,8 @@ import Fab from "@material-ui/core/Fab";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
-import MovieReviews from "../movieReviews"
+import MovieReviews from "../movieReviews";
+import MovieCredits from "../movieCredits";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,11 +29,17 @@ const useStyles = makeStyles((theme) => ({
     bottom: theme.spacing(2),
     right: theme.spacing(2),
   },
+  fab2: {
+    position: "fixed",
+    bottom: theme.spacing(2),
+    right: theme.spacing(19),
+  }
 }));
 
 const MovieDetails = ({ movie }) => {  // Don't miss this!
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [drawerOpen2, setDrawerOpen2] = useState(false);
 
   return (
     <>
@@ -91,6 +98,20 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />
       </Drawer>
+
+      <Fab
+        color="secondary"
+        variant="extended"
+        onClick={() =>setDrawerOpen2(true)}
+        className={classes.fab2}
+      >
+        <NavigationIcon />
+        Movie Credits
+      </Fab>
+      <Drawer anchor="left" open={drawerOpen2} onClose={() => setDrawerOpen2(false)}>
+        <MovieCredits movie={movie} />
+      </Drawer>
+
     </>
   );
 };

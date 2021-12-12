@@ -1,5 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Route, Redirect } from "react-router-dom";
+import HomePage from "./pages/homePage";
 
 const PrivateRoute = props => {
 const { component: Component, ...rest } = props;

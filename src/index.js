@@ -32,10 +32,7 @@ const queryClient = new QueryClient({
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
-
-
 const App = () => {
-
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
@@ -43,7 +40,7 @@ const App = () => {
         <MoviesContextProvider>
             {" "}
             <Switch>
-            <Route exact path="/login" component={AddLoginPage} />         
+            <Route exact path="/login" component={AddLoginPage}  />  
             <PrivateRoute path="/movies/popular" component={AddMostPopularPage} />
             <PrivateRoute path="/movies/topRated" component={AddTopRatedPage} />
             <PrivateRoute path="/movies/nowplaying" component={AddNowPlayingMoviePage} />

@@ -9,10 +9,13 @@ const useStyles = makeStyles({
     padding: "20px",
   },
   text: {
+      width:"600px",
       textAlign:"center",
       position:"relative",
-      top:"100px",
+      top:"150px",
       fontFamily:"cursive",
+      justifyContent:"center",
+      margin: "Auto",
   },
 });
 
