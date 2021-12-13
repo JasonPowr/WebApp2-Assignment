@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 const MovieDetails = ({ movie }) => {  // Don't miss this!
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [drawerOpen2, setDrawerOpen2] = useState(false);
+  const [drawerOpenCredit, setDrawerOpenCredit] = useState(false);
 
   return (
     <>
@@ -102,13 +102,13 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
       <Fab
         color="secondary"
         variant="extended"
-        onClick={() =>setDrawerOpen2(true)}
+        onClick={() =>setDrawerOpenCredit(true)}
         className={classes.fab2}
       >
         <NavigationIcon />
         Movie Credits
       </Fab>
-      <Drawer anchor="left" open={drawerOpen2} onClose={() => setDrawerOpen2(false)}>
+      <Drawer anchor="left" open={drawerOpenCredit} onClose={() => setDrawerOpenCredit(false)}>
         <MovieCredits movie={movie} />
       </Drawer>
 

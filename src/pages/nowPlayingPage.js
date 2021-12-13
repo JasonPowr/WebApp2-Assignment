@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PageTemplate from '../components/templateMovieListPage'
 import { getNowPlaying } from "../api/tmdb-api";
-import AddToFavoritesIcon from '../components/cardIcons/addToFavorites';
 import AddToWatchList from '../components/cardIcons/addToWatchList';
 
 const NowPlayingMoviePage = (props) => {
